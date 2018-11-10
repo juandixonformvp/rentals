@@ -64,9 +64,22 @@ public class VideoTest {
     }
 
     @Test
-    public void testUnequalAvailability() throws VideoException {
-        Video video1 = new Video("Moana", 2014);
-        Video video2 = new Video("Moanaa", 2014);
-        assertEquals(false, video1.equals(video2));
+    public void testIsAvailable() throws VideoException {
+        Video video = new Video("Moana", 2014);
+		assertEquals(true, video.isAvailable());
     }
+
+	@Test
+	public void testCheckout() throws VideoException {
+		Video video = new Video("Moana", 2014);
+		video.checkOut();
+		assertEquals(false, video.isAvailable());
+	}
+
+	@Test
+	public void testCheckIn() throws VideoException {
+		Video video = new Video("Moana", 2014);
+		video.checkIn();
+		assertEquals(true, video.isAvailable());
+	}
 }
