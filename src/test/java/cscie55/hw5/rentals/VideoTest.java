@@ -77,6 +77,18 @@ public class VideoTest {
 		assertEquals(false, video.isAvailable());
 	}
 
+    @Test
+    public void testCheckoutException() throws VideoException {
+        Video video = new Video("Moana", 2014);
+        video.checkOut();
+        try {
+            video.checkOut();
+            fail();
+        } catch (RuntimeException e) {
+            // Expected
+        }
+    }
+
 	@Test
 	public void testCheckIn() throws VideoException {
 		Video video = new Video("Moana", 2014);
@@ -91,4 +103,12 @@ public class VideoTest {
 		assertFalse(video.isAvailable());
 		assertFalse(video.isNotAvailable());
 	}
+
+    @Test
+    public void testReplaceToStock() throws VideoException {
+        Video video = new Video("Moana", 2014);
+        video.removeFromStock();
+        video.replaceToStock();
+        assertEquals(true, video.isAvailable());
+    }
 }
