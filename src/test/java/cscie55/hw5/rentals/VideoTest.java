@@ -111,4 +111,19 @@ public class VideoTest {
         video.replaceToStock();
         assertEquals(true, video.isAvailable());
     }
+
+	@Test
+	public void testCompareToTrue() throws VideoException {
+		Video video1 = new Video("Moana", 2014);
+		Video video2 = new Video("Moana", 2014);
+		assertEquals(0, video1.compareTo(video2));
+	}
+
+	@Test
+	public void testCompareToFalse() throws VideoException {
+		Video video1 = new Video("Moana", 2014);
+		Video video2 = new Video("Moanaa", 2014);
+		assertEquals(-1, video1.compareTo(video2));
+	}
+
 }
