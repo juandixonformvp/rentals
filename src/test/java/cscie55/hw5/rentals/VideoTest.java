@@ -41,4 +41,32 @@ public class VideoTest {
 			// Expected
 		}
 	}
+
+    @Test
+    public void testEqualVideo() throws VideoException {
+	    Video video1 = new Video("Moana", 2014);
+        Video video2 = new Video("Moana", 2014);
+        assertEquals(true, video1.equals(video2));
+    }
+
+    @Test
+    public void testUnequalYear() throws VideoException {
+        Video video1 = new Video("Moana", 2014);
+        Video video2 = new Video("Moana", 2015);
+        assertEquals(false, video1.equals(video2));
+    }
+
+    @Test
+    public void testUnequalName() throws VideoException {
+        Video video1 = new Video("Moana", 2014);
+        Video video2 = new Video("Moanaa", 2014);
+        assertEquals(false, video1.equals(video2));
+    }
+
+    @Test
+    public void testUnequalAvailability() throws VideoException {
+        Video video1 = new Video("Moana", 2014);
+        Video video2 = new Video("Moanaa", 2014);
+        assertEquals(false, video1.equals(video2));
+    }
 }
