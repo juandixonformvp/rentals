@@ -45,11 +45,14 @@ public class AccountTest {
 
 	@Test
 	public void testHasRental() throws VideoException {
-		Video video = new Video("Moana", 2014);
+		Video video1 = new Video("Moana", 2014);
+		Video video2 = new Video("Big", 1988);
 		Account account = new Account("Bob", "Lee", "anon@gmail.com");
-		VideoRental videoRental = new VideoRental(video, account, LocalDate.now().plusDays(5));
-//		account.addRental(videoRental);
+		VideoRental videoRental1 = new VideoRental(video1, account, LocalDate.now().plusDays(5));
+		VideoRental videoRental2 = new VideoRental(video2, account, LocalDate.now().plusDays(5));
 		assertEquals(true, account.hasOpenRental("Moana"));
+		assertEquals(true, account.hasOpenRental("Big"));
+		assertEquals(false, account.hasOpenRental("Gladiator"));
 	}
 
 
