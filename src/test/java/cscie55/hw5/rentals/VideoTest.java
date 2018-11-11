@@ -7,9 +7,11 @@ import static org.junit.Assert.fail;
 
 public class VideoTest { 
 
+//	There is a bug, in that videos have no ID. Multiple copies of the same video cannot be handled
+//	by the Video class. It assumes that availability is based on title and year, and not ID.
+
 	@Test
 	public void testEmptyTitle() {
-
 		try {
 			Video video = new Video("",2005);
 			fail();
