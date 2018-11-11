@@ -85,4 +85,14 @@ public class VideoRentalTest {
 		assertEquals(false, videoRental.isOpen());
 	}
 
+    @Test
+    public void testIsOverdue() throws VideoException {
+        Video video = new Video("Moana", 2014);
+        Account account = new Account("Bob", "Lee", "anon@gmail.com");
+        VideoRental videoRental = new VideoRental(video, account, LocalDate.now().plusDays(5));
+        Period period = Period.between( LocalDate.now() , videoRental.getDateDue());
+        assertEquals(videoRental.isOverDue(), period.getDays() >= 0 );
+//      bug in code, if the period between due date and today's date is positive, then isOverDue should be false
+    }
+
 }
