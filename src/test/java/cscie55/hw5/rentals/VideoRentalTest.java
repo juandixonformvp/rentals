@@ -68,4 +68,21 @@ public class VideoRentalTest {
 		assertEquals(false, videoRental1.equals(videoRental2));
 	}
 
+	@Test
+	public void testIsOpen() throws VideoException {
+		Video video = new Video("Moana", 2014);
+		Account account = new Account("Bob", "Lee", "anon@gmail.com");
+		VideoRental videoRental = new VideoRental(video, account, LocalDate.now().plusDays(5));
+		assertEquals(true, videoRental.isOpen());
+	}
+
+	@Test
+	public void testRentalReturn() throws VideoException {
+		Video video = new Video("Moana", 2014);
+		Account account = new Account("Bob", "Lee", "anon@gmail.com");
+		VideoRental videoRental = new VideoRental(video, account, LocalDate.now().plusDays(5));
+		videoRental.rentalReturn();
+		assertEquals(false, videoRental.isOpen());
+	}
+
 }
