@@ -35,4 +35,37 @@ public class VideoRentalTest {
 		assertEquals(5, period.getDays());
 	}
 
+	@Test
+	public void testDateEquals() throws VideoException {
+		Video video1 = new Video("Moana", 2014);
+		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
+		VideoRental videoRental1 = new VideoRental(video1, account1, LocalDate.now().plusDays(5));
+		Video video2 = new Video("Moana", 2014);
+		Account account2 = new Account("Bob", "Lee", "anon@gmail.com");
+		VideoRental videoRental2 = new VideoRental(video2, account2, LocalDate.now().plusDays(6));
+		assertEquals(false, videoRental1.equals(videoRental2));
+	}
+
+	@Test
+	public void testVideoEquals() throws VideoException {
+		Video video1 = new Video("Moana", 2014);
+		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
+		VideoRental videoRental1 = new VideoRental(video1, account1, LocalDate.now().plusDays(5));
+		Video video2 = new Video("Moana", 2015);
+		Account account2 = new Account("Bob", "Lee", "anon@gmail.com");
+		VideoRental videoRental2 = new VideoRental(video2, account2, LocalDate.now().plusDays(5));
+		assertEquals(false, videoRental1.equals(videoRental2));
+	}
+
+	@Test
+	public void testAccountEquals() throws VideoException {
+		Video video1 = new Video("Moana", 2014);
+		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
+		VideoRental videoRental1 = new VideoRental(video1, account1, LocalDate.now().plusDays(5));
+		Video video2 = new Video("Moana", 2014);
+		Account account2 = new Account("Bob", "Li", "anon@gmail.com");
+		VideoRental videoRental2 = new VideoRental(video2, account2, LocalDate.now().plusDays(5));
+		assertEquals(false, videoRental1.equals(videoRental2));
+	}
+
 }
