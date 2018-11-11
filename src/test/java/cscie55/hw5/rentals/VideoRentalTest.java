@@ -26,4 +26,13 @@ public class VideoRentalTest {
 		assertEquals(14, period.getDays());
 	}
 
+	@Test
+	public void testCustomDueDate() throws VideoException {
+		Video video = new Video("Moana", 2014);
+		Account account = new Account("Bob", "Lee", "anon@gmail.com");
+		VideoRental videoRental = new VideoRental(video, account, LocalDate.now().plusDays(5));
+		Period period = Period.between( LocalDate.now() , videoRental.getDateDue());
+		assertEquals(5, period.getDays());
+	}
+
 }
