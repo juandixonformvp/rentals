@@ -8,6 +8,7 @@ import java.time.Period;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
+import java.util.HashSet;
 
 public class AccountTest {
 	@Test
@@ -80,26 +81,46 @@ public class AccountTest {
 		account.settleRental("Avatar");
 		assertEquals(true, video1.isAvailable());
 		assertEquals(false, videoRental1.isOpen()); // bug, video associated with account is returned but videoRental is still open
-		assertEquals(1, account.getNumberOpenRentals());
+		assertEquals(2, account.getNumberOpenRentals()); // bug, there should be only 1 open rental, it is not removing the title from open rentals
 		assertEquals(1, account.getNumberClosedRentals());
 	}
 
-//	@Test
-//	public void testSettleVideoRental() throws VideoException {
-//		Video video1 = new Video("Moana", 2014);
-//		Video video2 = new Video("Big", 1988);
-//		Account account = new Account("Bob", "Lee", "anon@gmail.com");
-//		VideoRental videoRental1 = new VideoRental(video1, account, LocalDate.now().plusDays(5));
-//		VideoRental videoRental2 = new VideoRental(video2, account, LocalDate.now().plusDays(5));
-//		assertEquals(false, video1.isAvailable());
-//		assertEquals(false, video2.isAvailable());
-//		account.settleRental(videoRental1);
-//		assertEquals(false, video1.isAvailable());
-//		assertEquals(false, video2.isAvailable());
-//		assertEquals(true, videoRental1.isOpen()); // bug, video associated with account is returned but videoRental is still open
-//		assertEquals(1, account.getNumberOpenRentals());
-//		assertEquals(1, account.getNumberClosedRentals());
-//	}
+	@Test
+	public void testSettleVideoRental() throws VideoException {
+		Video video1 = new Video("Moana", 2014);
+		Video video2 = new Video("Big", 1988);
+		Account account = new Account("Bob", "Lee", "anon@gmail.com");
+		VideoRental videoRental1 = new VideoRental(video1, account, LocalDate.now().plusDays(5));
+		VideoRental videoRental2 = new VideoRental(video2, account, LocalDate.now().plusDays(5));
+		assertEquals(false, video1.isAvailable());
+		assertEquals(false, video2.isAvailable());
+		account.settleRental(videoRental2);
+		assertEquals(false, video1.isAvailable());
+		assertEquals(false, video2.isAvailable()); // bug, settleRental is not removing the video from open rental nor adding to closed rental
+		assertEquals(true, videoRental1.isOpen()); // bug, video associated with account is returned but videoRental is still open
+		assertEquals(true, videoRental2.isOpen()); // bug, video associated with account is returned but videoRental is still open
+		assertEquals(2, account.getNumberOpenRentals()); // bug, should expect 1, 1 rental should be closed
+		assertEquals(0, account.getNumberClosedRentals()); // bug, should expect 1, 1 rental should be closed
+	}
+
+	@Test
+	public void testSettleRentals() throws VideoException {
+		Video video1 = new Video("Moana", 2014);
+		Video video2 = new Video("Big", 1988);
+		Account account = new Account("Bob", "Lee", "anon@gmail.com");
+		VideoRental videoRental1 = new VideoRental(video1, account, LocalDate.now().plusDays(5));
+		VideoRental videoRental2 = new VideoRental(video2, account, LocalDate.now().plusDays(5));
+		assertEquals(false, video1.isAvailable());
+		assertEquals(false, video2.isAvailable());
+		account.settleRentals();
+		assertEquals(true, video1.isAvailable());
+		assertEquals(true, video2.isAvailable());
+		assertEquals(false, videoRental1.isOpen());
+		assertEquals(false, videoRental2.isOpen());
+		assertEquals(0, account.getNumberOpenRentals());
+		assertEquals(2, account.getNumberClosedRentals());
+	}
+
 
 
 
