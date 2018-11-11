@@ -38,12 +38,4 @@ public class AccountTest {
 		assertEquals(false, account1.equals(account2));
 	}
 
-	@Test
-	public void testEqualEmail() {
-		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
-		Account account2 = new Account("Bob", "Lee", "anon@yahoo.com");
-		assertEquals(false, account1.equals(account2));
-	}
-
-
 }
