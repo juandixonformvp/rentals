@@ -66,9 +66,9 @@ public class AccountTest {
 	}
 
 	@Test
-	public void testSettleRental() throws VideoException {
-		Video video1 = new Video("Moana", 2014);
-		Video video2 = new Video("Big", 1988);
+	public void testSettleRentalTitle() throws VideoException {
+		Video video1 = new Video("Avatar", 2010);
+		Video video2 = new Video("Ghost", 1992);
 		Account account = new Account("Bob", "Lee", "anon@gmail.com");
 		VideoRental videoRental1 = new VideoRental(video1, account, LocalDate.now().plusDays(5));
 		assertEquals(false, video1.isAvailable());
@@ -77,12 +77,29 @@ public class AccountTest {
 		assertEquals(false, video2.isAvailable());
 		assertEquals(2, account.getNumberOpenRentals());
 		assertEquals(0, account.getNumberClosedRentals());
-		account.settleRental("Moana");
+		account.settleRental("Avatar");
 		assertEquals(true, video1.isAvailable());
 		assertEquals(false, videoRental1.isOpen()); // bug, video associated with account is returned but videoRental is still open
 		assertEquals(1, account.getNumberOpenRentals());
 		assertEquals(1, account.getNumberClosedRentals());
 	}
+
+//	@Test
+//	public void testSettleVideoRental() throws VideoException {
+//		Video video1 = new Video("Moana", 2014);
+//		Video video2 = new Video("Big", 1988);
+//		Account account = new Account("Bob", "Lee", "anon@gmail.com");
+//		VideoRental videoRental1 = new VideoRental(video1, account, LocalDate.now().plusDays(5));
+//		VideoRental videoRental2 = new VideoRental(video2, account, LocalDate.now().plusDays(5));
+//		assertEquals(false, video1.isAvailable());
+//		assertEquals(false, video2.isAvailable());
+//		account.settleRental(videoRental1);
+//		assertEquals(false, video1.isAvailable());
+//		assertEquals(false, video2.isAvailable());
+//		assertEquals(true, videoRental1.isOpen()); // bug, video associated with account is returned but videoRental is still open
+//		assertEquals(1, account.getNumberOpenRentals());
+//		assertEquals(1, account.getNumberClosedRentals());
+//	}
 
 
 
