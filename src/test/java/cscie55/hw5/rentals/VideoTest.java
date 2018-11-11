@@ -6,9 +6,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 public class VideoTest { 
-	@Test
-	public void testVideo() {
-	}
 
 	@Test
 	public void testEmptyTitle() {

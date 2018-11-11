@@ -12,15 +12,36 @@ public class AccountTest {
 
 	@Test
 	public void testEqualAccount() {
-		Account account1 = new Account("Bob", "", "anon@gmail.com");
-		Account account2 = new Account("Bob", "", "anon@gmail.com");
+		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
+		Account account2 = new Account("Bob", "Lee", "anon@gmail.com");
 		assertEquals(true, account1.equals(account2));
 	}
 
 	@Test
 	public void testEqualFname() {
-		Account account1 = new Account("Bob", "", "anon@gmail.com");
-		Account account2 = new Account("Bobb", "", "anon@gmail.com");
+		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
+		Account account2 = new Account("Bobb", "Lee", "anon@gmail.com");
+		assertEquals(false, account1.equals(account2));
+	}
+
+	@Test
+	public void testEqualLname() {
+		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
+		Account account2 = new Account("Bob", "Li", "anon@gmail.com");
+		assertEquals(false, account1.equals(account2));
+	}
+
+	@Test
+	public void testEqualEmail() {
+		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
+		Account account2 = new Account("Bob", "Lee", "anon@yahoo.com");
+		assertEquals(false, account1.equals(account2));
+	}
+
+	@Test
+	public void testEqualEmail() {
+		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
+		Account account2 = new Account("Bob", "Lee", "anon@yahoo.com");
 		assertEquals(false, account1.equals(account2));
 	}
 
