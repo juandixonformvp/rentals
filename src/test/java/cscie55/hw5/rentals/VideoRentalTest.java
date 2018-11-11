@@ -91,8 +91,7 @@ public class VideoRentalTest {
         Account account = new Account("Bob", "Lee", "anon@gmail.com");
         VideoRental videoRental = new VideoRental(video, account, LocalDate.now().plusDays(5));
         Period period = Period.between( LocalDate.now() , videoRental.getDateDue());
-        assertEquals(videoRental.isOverDue(), period.getDays() >= 0 );
-//      bug in code, if the period between due date and today's date is positive, then isOverDue should be false
+        assertEquals(videoRental.isOverDue(), period.getDays() >= 0 ); // bug in code, if the period between due date and today's date is positive, then isOverDue should be false
     }
 
 }

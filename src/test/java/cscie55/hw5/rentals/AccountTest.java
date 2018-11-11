@@ -62,8 +62,7 @@ public class AccountTest {
 		Account account = new Account("Bob", "Lee", "anon@gmail.com");
 		VideoRental videoRental1 = new VideoRental(video1, account, LocalDate.now().plusDays(5));
 		VideoRental videoRental2 = new VideoRental(video2, account, LocalDate.now().plusDays(5));
-		assertEquals(true, account.getOverdueRentals().size() > 0 );
-//		has bug, these videos are not overdue, but videoRental isOverdue method has bug
+		assertEquals(true, account.getOverdueRentals().size() > 0 ); // has bug, these videos are not overdue, but videoRental isOverdue method has bug
 	}
 
 	@Test
