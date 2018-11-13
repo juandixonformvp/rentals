@@ -42,6 +42,7 @@ public class VideoTest {
 		}
 	}
 
+	// tests the equals method
     @Test
     public void testEqualVideo() throws VideoException {
 	    Video video1 = new Video("Moana", 2014);
@@ -49,6 +50,7 @@ public class VideoTest {
         assertEquals(true, video1.equals(video2));
     }
 
+    // tests that equals returns false when year differs
     @Test
     public void testUnequalYear() throws VideoException {
         Video video1 = new Video("Moana", 2014);
@@ -56,6 +58,7 @@ public class VideoTest {
         assertEquals(false, video1.equals(video2));
     }
 
+	// tests that equals returns false when title differs
     @Test
     public void testUnequalName() throws VideoException {
         Video video1 = new Video("Moana", 2014);
@@ -95,6 +98,7 @@ public class VideoTest {
 		assertEquals(true, video.isAvailable());
 	}
 
+	// since there is no getter for AVAILABILITY, checks that isAvailable and isNotAvailable return false
 	@Test
 	public void testRemoveFromStock() throws VideoException {
 		Video video = new Video("Moana", 2014);
@@ -111,6 +115,7 @@ public class VideoTest {
         assertEquals(true, video.isAvailable());
     }
 
+    // checks compareTo method
 	@Test
 	public void testCompareToTrue() throws VideoException {
 		Video video1 = new Video("Moana", 2014);
@@ -118,6 +123,7 @@ public class VideoTest {
 		assertEquals(0, video1.compareTo(video2));
 	}
 
+	// checks that compareTo returns false when titles differ
 	@Test
 	public void testCompareToFalse() throws VideoException {
 		Video video1 = new Video("Moana", 2014);
