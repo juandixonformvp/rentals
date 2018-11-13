@@ -1,20 +1,12 @@
 package cscie55.hw5.rentals;
 
 import org.junit.Test;
-
 import java.time.LocalDate;
-import java.time.Period;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
-import java.util.HashSet;
+
 
 public class AccountTest {
-	@Test
-	public void testAccount() {
-	}
-
+	// tests the equals method
 	@Test
 	public void testEqualAccount() {
 		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
@@ -22,6 +14,7 @@ public class AccountTest {
 		assertEquals(true, account1.equals(account2));
 	}
 
+	// tests that equals returns false when fname differs
 	@Test
 	public void testEqualFname() {
 		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
@@ -29,6 +22,7 @@ public class AccountTest {
 		assertEquals(false, account1.equals(account2));
 	}
 
+	// tests that equals returns false when lname differs
 	@Test
 	public void testEqualLname() {
 		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
@@ -36,6 +30,7 @@ public class AccountTest {
 		assertEquals(false, account1.equals(account2));
 	}
 
+	// tests that equals returns false when email differs
 	@Test
 	public void testEqualEmail() {
 		Account account1 = new Account("Bob", "Lee", "anon@gmail.com");
@@ -43,6 +38,7 @@ public class AccountTest {
 		assertEquals(false, account1.equals(account2));
 	}
 
+	// tests the hasOpenRental method
 	@Test
 	public void testHasRental() throws VideoException {
 		Video video1 = new Video("Moana", 2014);
@@ -55,6 +51,7 @@ public class AccountTest {
 		assertEquals(false, account.hasOpenRental("Gladiator"));
 	}
 
+	// tests the overdueRental method, this method has a bug
 	@Test
 	public void testHasOverdueRental() throws VideoException {
 		Video video1 = new Video("Moana", 2014);
@@ -65,6 +62,7 @@ public class AccountTest {
 		assertEquals(true, account.getOverdueRentals().size() > 0 ); // has bug, these videos are not overdue, but videoRental isOverdue method has bug
 	}
 
+	// tests that accounts can be properly settled by video title
 	@Test
 	public void testSettleRentalTitle() throws VideoException {
 		Video video1 = new Video("Avatar", 2010);
@@ -84,6 +82,7 @@ public class AccountTest {
 		assertEquals(1, account.getNumberClosedRentals());
 	}
 
+	// tests that accounts can be properly settled by videoRental
 	@Test
 	public void testSettleVideoRental() throws VideoException {
 		Video video1 = new Video("Moana", 2014);
@@ -102,6 +101,7 @@ public class AccountTest {
 		assertEquals(1, account.getNumberClosedRentals());
 	}
 
+	// tests the settleRenatls method
 	@Test
 	public void testSettleRentals() throws VideoException {
 		Video video1 = new Video("Moana", 2014);
@@ -121,6 +121,7 @@ public class AccountTest {
 	}
 
 
+	// tests settleRental by title when the user enters a custom due date, bug found
 	@Test
 	public void testSettleRentalTitleCustomDate() throws VideoException {
 		Video video1 = new Video("Avatar", 2010);
@@ -137,6 +138,7 @@ public class AccountTest {
 	}
 
 
+	// tests settleRental by videoRental when the user enters a custom due date, bug found
 	@Test
 	public void testSettleVideoRentalCustomDate() throws VideoException {
 		Video video1 = new Video("Moana", 2014);
