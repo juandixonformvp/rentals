@@ -10,6 +10,7 @@ public class VideoTest {
 //	There is a bug, in that videos have no ID. Multiple copies of the same video cannot be handled
 //	by the Video class. It assumes that availability is based on title and year, and not ID.
 
+	// checks that exception is thrown with empty title
 	@Test
 	public void testEmptyTitle() {
 		try {
@@ -20,6 +21,7 @@ public class VideoTest {
 		}
 	}
 
+	// checks that exception is thrown when year < 1900
 	@Test
 	public void testTooOldYear() {
 
@@ -31,6 +33,7 @@ public class VideoTest {
 		}
 	}
 
+	// checks that exception is thrown with year > current year
 	@Test
 	public void testTooNewYear() {
 
